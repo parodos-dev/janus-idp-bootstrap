@@ -43,14 +43,6 @@ argocd_cr:
     policy: |
       g, system:cluster-admins, role:admin
     scopes: '[groups]'
-  resourceExclusions: |
-    - apiGroups:
-        - tekton.dev
-      clusters:
-        - '*'
-      kinds:
-        - TaskRun
-        - PipelineRun
   server:
     route:
       enabled: true
