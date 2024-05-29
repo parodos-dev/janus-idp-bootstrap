@@ -16,6 +16,13 @@ spec:
     image: quay.io/openshift/origin-cli:latest
     imagePullPolicy: IfNotPresent
     command: ['sh', '-c', 'while [ true ]; do oc get crd argocds.argoproj.io applications.argoproj.io appprojects.argoproj.io; if [ $? -eq 0 ]; then break; fi ; sleep 5s; done']
+    securityContext:
+      allowPrivilegeEscalation: false
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+        - ALL
   restartPolicy: Never
   terminationGracePeriodSeconds: 0
   serviceAccount: default
